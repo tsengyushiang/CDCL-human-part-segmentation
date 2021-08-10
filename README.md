@@ -45,3 +45,38 @@ pip3 install Cython scikit-image tensorflow-gpu==1.12.0 keras==2.1.1 configobj I
 ```
 
 ## Clone poject and run inferenct
+
+```
+// download source code
+git clone https://github.com/tsengyushiang/CDCL-human-part-segmentation.git
+
+cd weights
+
+// download pretrained weights
+wget https://github.com/tsengyushiang/CDCL-human-part-segmentation/releases/download/v0.0.0/model_simulated_RGB_mgpu_scaling_append.0071.h5.7z
+
+wget https://github.com/tsengyushiang/CDCL-human-part-segmentation/releases/download/v0.0.0/model_simulated_RGB_mgpu_scaling_append.0024.h5.7z
+
+// unzip weights
+apt-get install p7zip-full
+7z x model_simulated_RGB_mgpu_scaling_append.0071.h5.7z
+
+cd..
+```
+
+For single-scale inference, please run the following command
+
+    $ python3 inference_7parts.py --scale=1
+
+You may also like to run the following command for multi-scale inference for more accurate results
+
+    $ python3 inference_7parts.py --scale=1 --scale=0.5 --scale=0.75
+
+
+For 15 parts prediction, please run the following command
+
+    $ python3 inference_15parts.py --scale=1
+
+Similarly, you can run the following command for multi-scale inference for more accurate results
+
+    $ python3 inference_15parts.py --scale=1 --scale=0.5 --scale=0.75
