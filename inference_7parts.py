@@ -184,7 +184,10 @@ if __name__ == '__main__':
             seg_canvas = human_seg_combine_argmax_rgb(seg_argmax)
             cur_canvas = cv2.imread(args.input_folder+'/'+filename)
             canvas = cv2.addWeighted(seg_canvas, 0.6, cur_canvas, 0.4, 0)
-            filename = '%s/%s.jpg'%(args.output_folder,'seg_'+filename)
-            cv2.imwrite(filename, canvas) 
+            overlap = '%s/%s.jpg'%(args.output_folder,'seg_'+filename)
+            cv2.imwrite(overlap, canvas)
+            mask = '%s/%s.jpg'%(args.output_folder,'mask_'+filename)
+            cv2.imwrite(mask, seg_canvas)
+
 
 
