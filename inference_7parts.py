@@ -186,8 +186,11 @@ if __name__ == '__main__':
             canvas = cv2.addWeighted(seg_canvas, 0.6, cur_canvas, 0.4, 0)
             overlap = '%s/%s.jpg'%(args.output_folder,'seg_'+filename)
             cv2.imwrite(overlap, canvas)
-            mask = '%s/%s.jpg'%(args.output_folder,'mask_'+filename)
-            cv2.imwrite(mask, seg_canvas)
+
+            headMask = np.zeros(seg_canvas.shape, dtype="uint8")
+            headMask[np.where((seg_canvas==[127,127,127]).all(axis=2))] = [255,255,255]
+            mask = '%s/%s.jpg'%(args.output_folder,'seg_'+filename+'_head')
+            cv2.imwrite(mask, headMask)
 
 
 
